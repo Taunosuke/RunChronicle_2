@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :redirect_unlogged_users, only: [:index]
+  before_action :redirect_unlogged_users, only: [ :index ]
   def index
   end
 
