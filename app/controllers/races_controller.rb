@@ -6,7 +6,7 @@ class RacesController < ApplicationController
   def create
     @race = Race.new(race_params)
     if @race.save
-      redirect_to @race, notice: 'Race was successfully created.'
+      redirect_to @race, notice: "Race was successfully created."
     else
       render :new
     end
