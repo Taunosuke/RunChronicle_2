@@ -1,0 +1,9 @@
+<h1>大会予定</h1>
+
+<ul>
+  <% @races.each do |race| %>
+    <li><%= race.name %> - <%= race.date %></li>
+  <% end %>
+</ul>
+
+<%= link_to '戻る', home_index_path %>
