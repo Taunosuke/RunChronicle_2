@@ -61,3 +61,4 @@ end
 
 gem "devise"
 gem "jquery-rails"
+gem 'rails-i18n'
