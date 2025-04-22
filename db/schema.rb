@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_04_035546) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_22_105615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,22 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_04_035546) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "event"
+    t.float "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "race_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "race_id", null: false
+    t.bigint "event_id", null: false
+    t.index ["event_id"], name: "index_race_events_on_event_id"
+    t.index ["race_id"], name: "index_race_events_on_race_id"
   end
 
   create_table "races", force: :cascade do |t|
@@ -40,4 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_04_035546) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "race_events", "events"
+  add_foreign_key "race_events", "races"
 end
