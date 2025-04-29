@@ -2,16 +2,15 @@ class RacesController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @race = Race.new
+    @form = RaceForm.new
   end
 
   def create
-    @race = Race.new(race_params)
-    @race.user_id = current_user.id
-    if @race.save
-      redirect_to @race, notice: "Race was successfully created."
+    @form = RaceForm.new(race_params)
+    if @form.save
+      redirect_to races_path, notice: "Race was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -23,6 +22,6 @@ class RacesController < ApplicationController
   private
 
   def race_params
-    params.require(:race).permit(:name, :date)
+    params.require(:race).permit(:name, :date, :event, :distance, :payment_due_date).merge(user_id: current_user.id)
   end
 end

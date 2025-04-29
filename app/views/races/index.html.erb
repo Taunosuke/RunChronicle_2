@@ -2,8 +2,15 @@
 
 <ul>
   <% @races.each do |race| %>
-    <li><%= race.name %> - <%= race.date %></li>
+ <p><strong>Name:</strong> <%= race.name %></p>
+ <p><strong>Date:</strong> <%= race.date %></p>
+ <p><strong>payment_due_date:</strong> <%= race.payment_due_date %></p>
+
+  <% race.events.each do |event| %>
+    <p><strong>event:</strong> <%= event.event %></p>
+    <p><strong>distance:</strong> <%= event.distance %>km</p>
   <% end %>
-</ul>
+<% end %>
+  </ul>
 
 <%= link_to '戻る', home_index_path %>

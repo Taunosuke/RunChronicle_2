@@ -1,18 +1,17 @@
-<h1>試合予定の登録</h2>
+<h1>試合予定の登録</h1>
 
-<%= form_with model: @race, local: true do |f| %>
-    <div class="field">
-      <%= f.label '大会名'%>
-      <%= f.text_field :name,  placeholder: '東京マラソン'  %>
-    </div>
+<%= render "form", form: @form %>
 
-    <div class="field">
-      <%= f.label '日程' %>
-      <%= f.text_field :date, placeholder: '2025-01-01' %>
-    </div>
+<% if @form.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@form.errors.count, "error") %> prohibited this race from being saved:</h2>
 
-    <div class="actions">
-      <%= f.submit '登録' %>
-    </div>
-   <%= link_to '戻る', home_index_path %>
-  <% end %>
+    <ul>
+      <% @form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= link_to '戻る', home_index_path %>
