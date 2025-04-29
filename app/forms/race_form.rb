@@ -43,8 +43,8 @@ class RaceForm
       name: race.name,
       date: race.date,
       payment_due_date: race.payment_due_date,
-      event: race.events.map(&:event).join(','),
-      distance: race.events.map(&:distance).join(',')
+      event: race.events.map(&:event).join(","),
+      distance: race.events.map(&:distance).join(",")
     }
   end
 end
