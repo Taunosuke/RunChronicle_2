@@ -1,0 +1,13 @@
+<%= form_with model: form , local: true do |form| %>
+  <%= form.label '大会名'%>
+  <%= form.text_field :name,placeholder: '東京マラソン'  %>
+  <%= form.label '日程' %>
+  <%= form.text_area :date, placeholder: '2025-01-01' %>
+  <%= form.label '種目' %>
+  <%= form.text_field :event, placeholder: 'フルマラソン'  %>
+  <%= form.label '距離' %>
+  <%= form.text_field :distance, placeholder: '42.195'  %> <div>"km"</div>
+  <%= form.label '入金期限' %>
+  <%= form.text_area :payment_due_date, placeholder: '2025-01-01' %>
+  <%= form.submit '登録' %>
+<% end %>

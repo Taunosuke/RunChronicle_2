@@ -2,7 +2,14 @@
 
 <ul>
   <% @races.each do |race| %>
-    <li><%= race.name %> - <%= race.date %></li>
+    <h1><%= race.name %></h1>
+    <h1><%= race.date %></h1>
+    <h1><%= race.payment_due_date %></h1>
+  <% end %>
+
+  <% @races.event.each do |event| %>
+    <%= event.name %>
+    <%= event.distance %>
   <% end %>
 </ul>
 
