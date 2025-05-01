@@ -35,5 +35,4 @@ class RacesController < ApplicationController
   def race_params
     params.require(:race).permit(:name, :date, :event, :distance, :payment_due_date).merge(user_id: current_user.id)
   end
-
 end
