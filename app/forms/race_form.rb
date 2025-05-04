@@ -11,6 +11,7 @@ class RaceForm
   validates :user_id, presence: true
 
   delegate :persisted?, to: :race
+  attr_reader :race
 
   def initialize(attributes = nil, race: Race.new)
     @race = race
@@ -36,15 +37,13 @@ class RaceForm
 
   private
 
-  attr_reader :race
-
   def default_attributes
     {
       name: race.name,
       date: race.date,
       payment_due_date: race.payment_due_date,
-      event: race.events.map(&:event).join(","),
-      distance: race.events.map(&:distance).join(",")
+      event: race.events.map(&:event),
+      distance: race.events.map(&:distance)
     }
   end
 end
