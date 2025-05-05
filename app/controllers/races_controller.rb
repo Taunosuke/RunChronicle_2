@@ -8,21 +8,22 @@ class RacesController < ApplicationController
 
   def create
     @form = RaceForm.new(race_params)
+    Rails.logger.debug
     if @form.save
       redirect_to races_path, notice: "Race was successfully created."
     else
+      Rails.logger.debug
       render :new, status: :unprocessable_entity
     end
   end
 
   def index
     @races = current_user.races
-    puts @races.inspect
   end
 
   def show
     @race = Race.find(params[:id])
-    @events = @race.events
+    @event = @race.event
   end
 
   def destroy
