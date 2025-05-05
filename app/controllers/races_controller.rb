@@ -38,7 +38,7 @@ class RacesController < ApplicationController
   def update
     @race = RaceForm.new(race_params, race: @race)
     if @race.save
-      redirect_to @race, notice:'大会予定を更新しました。'
+      redirect_to @race, notice: "大会予定を更新しました。"
     else
       render :edit
     end
