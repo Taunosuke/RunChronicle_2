@@ -14,17 +14,15 @@
     <%= @race.payment_due_date %>
   </p>
 
-  <% @events.each do |event| %>
   <p>
     <strong>種目:</strong>
-    <%= event.event %>
+    <%=  @event.event %>
   </p>
 
   <p>
     <strong>距離:</strong>
-    <%= event.distance %>km
+    <%=  @event.distance %>km
   </p>
-  <% end %>
 </p>
 </div>
 <%= link_to '編集', edit_race_path, class: 'btn btn-primary mr-3' %>

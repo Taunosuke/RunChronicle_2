@@ -14,21 +14,22 @@ class RaceForm
 
   def initialize(attributes = nil, race: Race.new)
     @race = race
+    self.name = race.name
+    self.date = race.date
+    self.payment_due_date = race.payment_due_date
+    self.event = race.event&.event
+    self.distance = race.event&.distance
     super(attributes)
   end
 
   def save
     return if invalid?
     ActiveRecord::Base.transaction do
-      Rails.logger.debug "👉 race: #{race.inspect}"
       race.update!(name: name, date: date, payment_due_date: payment_due_date, user_id: @user_id)
-      Rails.logger.debug "👉 Event: event=#{event}, distance=#{distance}"
       event_record = Event.find_or_create_by!(event: event, distance: distance)
-      Rails.logger.debug "👉 event_record: #{event_record.inspect}"
       race.event = event_record
     end
     rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.debug "🔥 SAVE ERROR (#{e.class}): #{e.message}"
     errors.add(:base, e.message)
     false
   end

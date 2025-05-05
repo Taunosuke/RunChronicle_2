@@ -8,11 +8,9 @@ class RacesController < ApplicationController
 
   def create
     @form = RaceForm.new(race_params)
-    Rails.logger.debug
     if @form.save
       redirect_to races_path, notice: "Race was successfully created."
     else
-      Rails.logger.debug
       render :new, status: :unprocessable_entity
     end
   end
@@ -34,6 +32,7 @@ class RacesController < ApplicationController
 
   def edit
     @race = RaceForm.new(race: @race)
+    Rails.logger.debug "🔥#{@race}"
   end
 
   def update
