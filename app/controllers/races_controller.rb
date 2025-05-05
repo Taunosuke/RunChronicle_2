@@ -1,5 +1,6 @@
 class RacesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_race, only: %i[edit update]
 
   def new
     @form = RaceForm.new
@@ -16,23 +17,40 @@ class RacesController < ApplicationController
 
   def index
     @races = current_user.races
-    puts @races.inspect
   end
 
   def show
     @race = Race.find(params[:id])
-    @events = @race.events
+    @event = @race.event
   end
 
   def destroy
     race = Race.find(params[:id])
     race.destroy
-    redirect_to races_path, notice: "大会予定を削除しました・"
+    redirect_to races_path, notice: "大会予定を削除しました。"
+  end
+
+  def edit
+    @race = RaceForm.new(race: @race)
+    Rails.logger.debug "🔥#{@race}"
+  end
+
+  def update
+    @race = RaceForm.new(race_params, race: @race)
+    if @race.save
+      redirect_to @race, notice: "大会予定を更新しました。"
+    else
+      render :edit
+    end
   end
 
   private
 
   def race_params
     params.require(:race).permit(:name, :date, :event, :distance, :payment_due_date).merge(user_id: current_user.id)
+  end
+
+  def set_race
+    @race = Race.find(params[:id])
   end
 end
