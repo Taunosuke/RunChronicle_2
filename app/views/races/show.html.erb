@@ -20,6 +20,6 @@
   <% end %>
 </div>
 <%= link_to '編集', edit_race_path, class: 'btn btn-primary mr-3' %>
-<%= link_to '感想を登録', new_race_race_result_path(@race), class: 'btn btn-primary mr-3' %>
+<%= link_to '大会結果を登録', new_race_race_result_path(@race), class: 'btn btn-primary mr-3' %>
 <%= button_to '削除', race_path(@race), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 <%= link_to '戻る', home_index_path %>

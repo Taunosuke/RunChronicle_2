@@ -19,7 +19,7 @@ class RaceResultsController < ApplicationController
   def show
     @race = Race.find(params[:race_id])
     @events = @race.events
-    @race_result = RaceResult.find(params[:race_result_id])
+    @race_result = @race.race_result
   end
 
   def edit
