@@ -7,10 +7,8 @@
        <p><strong>日付:</strong> <%= race.date %></p>
        <p><strong>入金期限:</strong> <%= race.payment_due_date %></p>
 
-       <% race.events.each do |event| %>
-         <p><strong>種目:</strong> <%= event.event %></p>
-         <p><strong>距離:</strong> <%= event.distance %>km</p>
-      <% end %>
+         <p><strong>種目:</strong> <%= race.event.event %></p>
+         <p><strong>距離:</strong> <%= race.event.distance %>km</p>
 
       <%= link_to '詳細', race_path(race) %>
       <% if race.race_result.present? %>

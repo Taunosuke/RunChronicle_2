@@ -2,7 +2,7 @@ class RaceResultsController < ApplicationController
   def new
     @race = Race.find(params[:race_id])
     @race_result = RaceResult.new()
-    @events = @race.events
+    @event = @race.event
   end
 
   def create
@@ -18,7 +18,7 @@ class RaceResultsController < ApplicationController
 
   def show
     @race = Race.find(params[:race_id])
-    @events = @race.events
+    @events = @race.event
     @race_result = @race.race_result
   end
 
