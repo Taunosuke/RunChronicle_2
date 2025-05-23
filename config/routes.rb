@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :events
   resources :races do
-    resource :race_result, only: [:new, :create, :edit, :update, :show]
+    resource :race_result, only: [ :new, :create, :edit, :update, :show ]
   end
   get "up" => "rails/health#show", as: :rails_health_check
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

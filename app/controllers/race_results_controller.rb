@@ -11,7 +11,7 @@ class RaceResultsController < ApplicationController
     @events = @race.events
     if  @race_result.save
         redirect_to race_result_params, notice: "Race was successfully created."
-      else
+    else
         render :new, status: :unprocessable_entity
     end
   end
