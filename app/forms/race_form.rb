@@ -1,7 +1,7 @@
 class RaceForm
   include ActiveModel::Model
 
-  attr_accessor :name, :date, :payment_due_date, :event, :distance, :user_id
+  attr_accessor :name, :date, :payment_due_date, :user_id, :event, :distance
 
   validates :name, presence: true
   validates :date, presence: true
@@ -14,7 +14,11 @@ class RaceForm
 
   def initialize(attributes = nil, race: Race.new)
     @race = race
-    attributes ||= default_attributes
+    self.name = race.name
+    self.date = race.date
+    self.payment_due_date = race.payment_due_date
+    self.event = race.event&.event
+    self.distance = race.event&.distance
     super(attributes)
   end
 
@@ -23,7 +27,7 @@ class RaceForm
     ActiveRecord::Base.transaction do
       race.update!(name: name, date: date, payment_due_date: payment_due_date, user_id: @user_id)
       event_record = Event.find_or_create_by!(event: event, distance: distance)
-      race.events << event_record
+      race.event = event_record
     end
     rescue ActiveRecord::RecordInvalid => e
     errors.add(:base, e.message)
@@ -38,13 +42,21 @@ class RaceForm
 
   attr_reader :race
 
+  def event_value
+    @race.event&.event
+  end
+
+  def distance_value
+    @race.event&.distance
+  end
+
   def default_attributes
     {
       name: race.name,
       date: race.date,
       payment_due_date: race.payment_due_date,
-      event: race.events.map(&:event).join(","),
-      distance: race.events.map(&:distance).join(",")
+      event: race.event.event,
+      distance: race.event.distance
     }
   end
 end

@@ -21,7 +21,7 @@ class RacesController < ApplicationController
 
   def show
     @race = Race.find(params[:id])
-    @events = @race.events
+    @event = @race.event
   end
 
   def destroy
@@ -32,12 +32,13 @@ class RacesController < ApplicationController
 
   def edit
     @race = RaceForm.new(race: @race)
+    Rails.logger.debug "🔥#{@race}"
   end
 
   def update
     @race = RaceForm.new(race_params, race: @race)
     if @race.save
-      redirect_to @race, notice:'大会予定を更新しました。'
+      redirect_to @race, notice: "大会予定を更新しました。"
     else
       render :edit
     end
