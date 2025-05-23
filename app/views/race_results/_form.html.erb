@@ -1,0 +1,7 @@
+<%= form_with model: @race_result ,url: race_race_result_path(@race), local: true do |form| %>
+    <%= form.label 'タイム'%>
+    <%= form.text_field :record_time_in_seconds %>
+    <%= form.label '感想' %>
+    <%= form.text_area :impression %>
+    <%= form.submit '登録' %>
+  <% end %>
