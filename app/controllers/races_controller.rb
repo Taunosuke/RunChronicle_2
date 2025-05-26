@@ -1,6 +1,7 @@
 class RacesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_race, only: %i[edit update]
+  before_action :is_marching_login_user, only: %i[show edit destroy]
 
   def new
     @form = RaceForm.new
@@ -32,7 +33,6 @@ class RacesController < ApplicationController
 
   def edit
     @race = RaceForm.new(race: @race)
-    Rails.logger.debug "🔥#{@race}"
   end
 
   def update
@@ -52,5 +52,13 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
+  end
+
+private
+  def is_marching_login_user
+    race = Race.find(params[:id])
+    unless race.user_id == current_user.id
+      redirect_to races_path
+    end
   end
 end
