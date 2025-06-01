@@ -17,7 +17,7 @@ class RacesController < ApplicationController
   end
 
   def index
-    @races = current_user.races.includes(:race_result)
+    @races = current_user.races.includes([ :race_result ])
   end
 
   def show
