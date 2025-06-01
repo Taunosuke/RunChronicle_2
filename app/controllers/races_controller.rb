@@ -18,6 +18,7 @@ class RacesController < ApplicationController
 
   def index
     @races = current_user.races.includes(:race_result)
+    logger.debug @races.map { |r| [r.id, r.event&.event, r.event&.distance] }.inspect
   end
 
   def show

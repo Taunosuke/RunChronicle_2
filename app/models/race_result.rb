@@ -1,6 +1,7 @@
 class RaceResult < ApplicationRecord
   belongs_to :user
   belongs_to :race, dependent: :destroy
+  has_many :race_result_comments, dependent: :destroy
 
   def formatted_time_japanese
     hours = record_time_in_seconds / 3600
