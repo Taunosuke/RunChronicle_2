@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resource :race_result, only: [ :new, :create, :edit, :update, :show ]
   end
   resources :race_result do
-    resources :race_result_comment, only: [ :create, :destroy]
+    resources :race_result_comments, only: [ :create, :destroy ]
   end
   get "up" => "rails/health#show", as: :rails_health_check
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

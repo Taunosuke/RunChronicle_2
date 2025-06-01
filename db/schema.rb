@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_31_044953) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_01_090531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_31_044953) do
     t.bigint "user_id", null: false
     t.bigint "race_result_id", null: false
     t.string "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["race_result_id"], name: "index_race_result_comments_on_race_result_id"
     t.index ["user_id"], name: "index_race_result_comments_on_user_id"
   end
