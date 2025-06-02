@@ -22,6 +22,7 @@ class RaceResultsController < ApplicationController
     @race = Race.find(params[:race_id])
     @events = @race.event
     @race_result = @race.race_result
+    @race_result_comment = RaceResultComment.new
   end
 
   def edit
