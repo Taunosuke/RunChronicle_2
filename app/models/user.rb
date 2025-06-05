@@ -3,4 +3,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :races, dependent: :destroy
   has_many :race_result_comments, dependent: :destroy
+  validates :name, uniqueness: true, presence: true
 end
