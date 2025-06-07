@@ -1,5 +1,5 @@
 class RaceResultsController < ApplicationController
-  before_action :is_marching_login_user, only: %i[show edit destroy]
+  before_action :is_marching_login_user, only: %i[edit destroy]
 
   def new
     @race = Race.find(params[:race_id])

@@ -41,6 +41,7 @@
   <% @race_result.race_result_comments.each do |race_result_comment| %>
     <%= race_result_comment.created_at.strftime('%Y/%m/%d') %>
     <%= race_result_comment.content %>
+    <p><%= race_result_comment.user.name %></P>
   <% end %>
 </div>
 
