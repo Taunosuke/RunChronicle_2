@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :events
   resources :races do
+    collection do
+      get "discover"
+    end
     resource :race_result, only: [ :new, :create, :edit, :update, :show ]
   end
   resources :race_result do

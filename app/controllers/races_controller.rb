@@ -44,6 +44,10 @@ class RacesController < ApplicationController
     end
   end
 
+  def discover
+    @races = Race.includes(:user)
+  end
+
   private
 
   def race_params

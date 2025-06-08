@@ -1,0 +1,9 @@
+<h1> みんなの大会予定 </h1>
+
+<% @races.each do |race| %>
+  <p>大会目：<%= race.name %></P>
+  <p>日付：<%= race.date %></P>
+  <p>投稿者：<%= race.user.name %>
+<% end %>
+
+<p><%= link_to '戻る', home_index_path %></P>
