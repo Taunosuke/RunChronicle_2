@@ -34,6 +34,9 @@ class RaceResultsController < ApplicationController
   def destroy
   end
 
+  def index
+  end
+
   private
   def race_result_params
     params.require(:race_result).permit(:record_time_in_seconds, :impression)
