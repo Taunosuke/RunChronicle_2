@@ -45,7 +45,7 @@ class RacesController < ApplicationController
   end
 
   def discover
-    @races = Race.includes(:user)
+    @races = Race.includes(:user, :race_result, :event)
   end
 
   private

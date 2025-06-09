@@ -4,6 +4,14 @@
   <p>大会目：<%= race.name %></P>
   <p>日付：<%= race.date %></P>
   <p>投稿者：<%= race.user.name %>
-<% end %>
+  <p>種目：<%= race.event.event %>
+
+<% if race.race_result.present? %>
+<p><%= link_to '結果を見る', race_race_result_path(race) %></P>
+ <% else %>
+  <%= link_to '結果登録前', class: 'btn btn-primary mr-3' %>
+ <% end %>
+
+ <% end %>
 
 <p><%= link_to '戻る', home_index_path %></P>
