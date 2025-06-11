@@ -1,0 +1,13 @@
+<h1> 宿泊予定の登録 </h1>
+
+<%= form_with(model: @stay_plan, url: race_stay_plan_path(params[:race_id]), local: true) do |form| %>
+<div>
+  <%= form.label '宿泊場所'  %>
+  <%= form.text_field :place_name %>
+</div>
+
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "戻る", :back %>
