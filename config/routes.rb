@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get "discover"
     end
     resource :race_result, only: [ :new, :create, :edit, :update, :show ]
+    resource :stay_plan, only: [ :new, :create, :edit, :update, :show ]
   end
   resources :race_result do
     resources :race_result_comments, only: [ :create, :destroy ]
