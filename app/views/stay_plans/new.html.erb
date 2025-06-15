@@ -6,6 +6,25 @@
   <%= form.text_field :place_name %>
 </div>
 
+<div>
+  <%= form.label '住所'  %>
+  <%= form.text_field :address %>
+</div>
+
+<div>
+  <%= form.label 'チェックイン'  %>
+  <%= form.text_area :check_in_time %>
+</div>
+
+<div>
+  <%= form.label 'チェックアウト'  %>
+  <%= form.text_area :check_out_time %>
+</div>
+
+<div>
+  <%= form.label '備考'  %>
+  <%= form.text_field :note %>
+</div>
 
   <%= form.submit %>
 <% end %>
