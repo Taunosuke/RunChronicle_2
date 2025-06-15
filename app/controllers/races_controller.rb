@@ -23,6 +23,7 @@ class RacesController < ApplicationController
   def show
     @race = Race.find(params[:id])
     @event = @race.event
+    @stay_plan = @race.stay_plan
   end
 
   def destroy

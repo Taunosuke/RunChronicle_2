@@ -23,6 +23,31 @@
     <strong>距離:</strong>
     <%=  @event.distance %>km
   </p>
+
+  <p>
+    <strong>宿泊場所:</strong>
+    <%= @stay_plan.place_name %>
+  </p>
+
+  <p>
+  <strong>住所:</strong>
+  <%= @stay_plan.address %>
+  </p>
+
+  <p>
+  <strong>チェックイン:</strong>
+  <%= @stay_plan.check_in_time %>
+  </p>
+
+  <p>
+  <strong>チェックアウト:</strong>
+  <%= @stay_plan.check_out_time %>
+  </p>
+
+  <p>
+  <strong>備考:</strong>
+  <%= @stay_plan.note %>
+  </p>
 </div>
 
 <%= link_to '編集', edit_race_path, class: 'btn btn-primary mr-3' %>
