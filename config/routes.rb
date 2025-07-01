@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   post "/races/:id/edit", to: "races#update"
   resources :items, only: [ :new, :create, :index, :edit, :update, :destroy ] do
-end
+  end
 end
