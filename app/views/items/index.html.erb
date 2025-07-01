@@ -1,0 +1,9 @@
+<h1>持ち物一覧</h1>
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <p><strong>持ち物名:</strong> <%= item.name %></p>
+      <%= link_to '編集', edit_item_path(item) %>
+      <%= link_to '削除', item_path(item), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    </li>
+  <% end %>
