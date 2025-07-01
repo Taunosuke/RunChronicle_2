@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_01_105935) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_01_111043) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_01_105935) do
     t.bigint "event_id", null: false
     t.index ["event_id"], name: "index_race_events_on_event_id"
     t.index ["race_id"], name: "index_race_events_on_race_id"
+  end
+
+  create_table "race_items", force: :cascade do |t|
+    t.bigint "race_id"
+    t.bigint "item_id", null: false
+    t.integer "check"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_race_items_on_item_id"
+    t.index ["race_id"], name: "index_race_items_on_race_id"
   end
 
   create_table "race_result_comments", force: :cascade do |t|
@@ -103,6 +113,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_01_105935) do
 
   add_foreign_key "race_events", "events"
   add_foreign_key "race_events", "races"
+  add_foreign_key "race_items", "items"
   add_foreign_key "race_result_comments", "race_results"
   add_foreign_key "race_result_comments", "users"
   add_foreign_key "race_results", "races"
