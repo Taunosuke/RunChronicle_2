@@ -1,0 +1,5 @@
+<%= form_with model: @item, local: true do |item| %>
+  <%= item.label 'アイテム名' %>
+  <%= item.text_field :name %>
+  <%= item.submit "登録する", class: "btn btn-primary" %>
+<% end %>

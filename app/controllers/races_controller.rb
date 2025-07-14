@@ -28,7 +28,6 @@ class RacesController < ApplicationController
 
   def destroy
     race = Race.find(params[:id])
-    race.destroy
     redirect_to races_path, notice: "大会予定を削除しました。"
   end
 
