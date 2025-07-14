@@ -15,8 +15,27 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  private
-    def item_params
-      params.require(:item).permit(:name)
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to items_path, notice: "Item was successfully deleted."
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    if @item = Item.update(item_params)
+      redirect_to @item
+    else
+      render
     end
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name)
+  end
 end
