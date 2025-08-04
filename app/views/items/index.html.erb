@@ -8,3 +8,4 @@
          <%= link_to '編集', edit_item_path(item) %>
       <%= link_to '削除', item_path(item), data: { turbo_method: :delete, confirm: '本当に削除しますか？' } %>
   <% end %>
+<%= link_to '戻る', home_index_path %>
