@@ -2,8 +2,9 @@
 <ul>
   <% @items.each do |item| %>
     <li>
-      <p><strong>持ち物名:</strong> <%= item.name %></p>
-      <%= link_to '編集', edit_item_path(item) %>
-      <%= link_to '削除', item_path(item), data: { turbo_method: :delete, confirm: '本当に削除しますか？' } %>
+      <p><%= check_box_tag :item.name %>
+      <strong>持ち物名:</strong> <%= item.name %></p>
     </li>
+         <%= link_to '編集', edit_item_path(item) %>
+      <%= link_to '削除', item_path(item), data: { turbo_method: :delete, confirm: '本当に削除しますか？' } %>
   <% end %>

@@ -26,32 +26,33 @@
 
   <p>
     <strong>宿泊場所:</strong>
-    <%= @stay_plan.place_name %>
+    <%= @stay_plan ? @stay_plan.place_name : "未設定" %>
   </p>
 
   <p>
   <strong>住所:</strong>
-  <%= @stay_plan.address %>
+  <%= @stay_plan ? @stay_plan.address : "未設定" %>
   </p>
 
   <p>
   <strong>チェックイン:</strong>
-  <%= @stay_plan.check_in_time %>
+  <%= @stay_plan ? @stay_plan.check_in_time : "未設定" %>
   </p>
 
   <p>
   <strong>チェックアウト:</strong>
-  <%= @stay_plan.check_out_time %>
+  <%= @stay_plan ? @stay_plan.check_out_time : "未設定" %>
   </p>
 
   <p>
   <strong>備考:</strong>
-  <%= @stay_plan.note %>
+  <%= @stay_plan ? @stay_plan.note : "未設定" %>
   </p>
 </div>
 
 <%= link_to '編集', edit_race_path, class: 'btn btn-primary mr-3' %>
 <%= link_to '宿泊予定を登録', new_race_stay_plan_path(@race), class: 'btn btn-primary mr-3' %>
 <%= link_to '大会結果を登録', new_race_race_result_path(@race), class: 'btn btn-primary mr-3' %>
+<%= link_to '持ち物を追加' , select_items_race_path(@race),class: 'btn btn-primary mr-3' %>
 <%= button_to '削除', race_path(@race), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 <%= link_to '戻る', home_index_path %>

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :events
   resources :races do
+  member do
+    get :select_items
+    patch :add_items
+  end
     collection do
       get "discover"
     end
