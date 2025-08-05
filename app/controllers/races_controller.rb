@@ -48,6 +48,11 @@ class RacesController < ApplicationController
     @races = Race.includes(:user, :race_result, :event)
   end
 
+  def select_items
+    @race = Race.find(params[:id])
+    @items = current_user.items
+  end
+
   private
 
   def race_params
@@ -58,7 +63,6 @@ class RacesController < ApplicationController
     @race = Race.find(params[:id])
   end
 
-private
   def is_marching_login_user
     race = Race.find(params[:id])
     unless race.user_id == current_user.id

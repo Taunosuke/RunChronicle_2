@@ -1,0 +1,13 @@
+<%= form_with url: add_items_race_path(@race), method: :patch, local: true do %>
+  <h3>持っていくアイテムを選んでください</h3>
+  <% @items.each do |item| %>
+    <div>
+      <%= check_box_tag "race[item_ids][]", item.id, @race.items.include?(item), id: "item_#{item.id}" %>
+      <%= label_tag "item_#{item.id}", item.name %>
+    </div>
+  <% end %>
+
+  <%= submit_tag "追加する" %>
+<% end %>
+
+<%= link_to "戻る", :back %>
