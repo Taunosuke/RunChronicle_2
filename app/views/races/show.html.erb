@@ -48,6 +48,13 @@
   <strong>備考:</strong>
   <%= @stay_plan ? @stay_plan.note : "未設定" %>
   </p>
+
+  <p>
+  <strong>持ち物リスト:</strong>
+  <% @race.items.each do |item| %>
+    <li><%= item.name %></li>
+  <% end %>
+  </p>
 </div>
 
 <%= link_to '編集', edit_race_path, class: 'btn btn-primary mr-3' %>

@@ -2,12 +2,10 @@
   <h3>持っていくアイテムを選んでください</h3>
   <% @items.each do |item| %>
     <div>
-      <%= check_box_tag "race[item_ids][]", item.id, @race.items.include?(item), id: "item_#{item.id}" %>
+      <%= check_box_tag "race[item_ids][]", item.id, @race_item_ids.include?(item.id), id: "item_#{item.id}" %>
       <%= label_tag "item_#{item.id}", item.name %>
     </div>
   <% end %>
 
   <%= submit_tag "追加する" %>
 <% end %>
-
-<%= link_to "戻る", :back %>
