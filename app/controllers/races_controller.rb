@@ -66,13 +66,13 @@ class RacesController < ApplicationController
       redirect_to @race, notice: "アイテムが正常に追加されました"
     else
       redirect_to select_items_race_path(@race), alert: "アイテムの追加に失敗しました"
-    e
+    end
+  else
     redirect_to select_items_race_path(@race), alert: "アイテムが選択されていません"
   end
  end
 
-  privatend
-  else
+  private
 
   def race_params
     params.require(:race).permit(:name, :date, :event, :distance, :payment_due_date, item_ids: []).merge(user_id: current_user.id)
