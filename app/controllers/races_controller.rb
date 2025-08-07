@@ -62,15 +62,15 @@ class RacesController < ApplicationController
    if params[:race] && params[:race][:item_ids]
     @race.item_ids = params[:race][:item_ids]
 
-    if @race.save
-      redirect_to @race, notice: "アイテムが正常に追加されました"
-    else
-      redirect_to select_items_race_path(@race), alert: "アイテムの追加に失敗しました"
-    end
-  else
+   if @race.save
+    redirect_to @race, notice: "アイテムが正常に追加されました"
+   else
+    redirect_to select_items_race_path(@race), alert: "アイテムの追加に失敗しました"
+   end
+   else
     redirect_to select_items_race_path(@race), alert: "アイテムが選択されていません"
+   end
   end
- end
 
   private
 
