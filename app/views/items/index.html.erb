@@ -2,7 +2,6 @@
 <ul>
   <% @items.each do |item| %>
     <li>
-      <p><%= check_box_tag :item.name %>
       <strong>持ち物名:</strong> <%= item.name %></p>
     </li>
          <%= link_to '編集', edit_item_path(item) %>

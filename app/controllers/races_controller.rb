@@ -51,12 +51,31 @@ class RacesController < ApplicationController
   def select_items
     @race = Race.find(params[:id])
     @items = current_user.items
+    @race_item_ids = @race.item_ids
   end
+
+  def add_items
+   @race = Race.find(params[:id])
+
+   puts params.inspect
+
+   if params[:race] && params[:race][:item_ids]
+    @race.item_ids = params[:race][:item_ids]
+
+    if @race.save
+      redirect_to @race, notice: 'アイテムが正常に追加されました'
+    else
+      redirect_to select_items_race_path(@race), alert: 'アイテムの追加に失敗しました'
+    end
+  else
+    redirect_to select_items_race_path(@race), alert: 'アイテムが選択されていません'
+  end
+ end
 
   private
 
   def race_params
-    params.require(:race).permit(:name, :date, :event, :distance, :payment_due_date).merge(user_id: current_user.id)
+    params.require(:race).permit(:name, :date, :event, :distance, :payment_due_date,item_ids: []).merge(user_id: current_user.id)
   end
 
   def set_race
