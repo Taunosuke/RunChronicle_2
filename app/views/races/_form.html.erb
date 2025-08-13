@@ -1,13 +1,44 @@
-<%= form_with model: @form ,scope: :race, local: true do |form| %>
-  <%= form.label '大会名'%>
-  <%= form.text_field :name,placeholder: '東京マラソン'  %>
-  <%= form.label '日程' %>
-  <%= form.text_area :date, placeholder: '2025-01-01' %>
-  <%= form.label '種目' %>
-  <%= form.text_field :event, placeholder: 'フルマラソン'  %>
-  <%= form.label '距離' %>
-  <%= form.text_field :distance, placeholder: '42.195' %>km
-  <%= form.label '入金期限' %>
-  <%= form.text_area :payment_due_date, placeholder: '2025-01-01' %>
-  <%= form.submit '登録' %>
+<%= form_with model: @form, scope: :race, local: true, class: "mx-auto max-w-lg space-y-6 bg-white p-6 rounded-xl shadow-sm border border-slate-200" do |f| %>
+  <!-- 大会名 -->
+  <div>
+    <%= f.label :name, "大会名", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <%= f.text_field :name, placeholder: "東京マラソン",
+      class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+  </div>
+
+  <!-- 日程（HTML5 date） -->
+  <div>
+    <%= f.label :date, "日程", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <%= f.date_field :date,
+      class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+  </div>
+
+  <!-- 種目 -->
+  <div>
+    <%= f.label :event, "種目", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <%= f.text_field :event, placeholder: "フルマラソン",
+      class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+  </div>
+
+  <!-- 距離（number + step） -->
+  <div>
+    <%= f.label :distance, "距離 (km)", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <div class="relative">
+      <%= f.number_field :distance, step: "0.001", min: "0", placeholder: "42.195",
+        class: "w-full rounded-lg border-slate-300 pr-14 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+      <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500 text-sm">km</span>
+    </div>
+  </div>
+
+  <!-- 入金期限（HTML5 date） -->
+  <div>
+    <%= f.label :payment_due_date, "入金期限", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <%= f.date_field :payment_due_date,
+      class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+  </div>
+
+  <!-- ボタン -->
+  <div class="pt-2">
+    <%= f.submit "登録", class: "w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold shadow hover:bg-blue-700 transition" %>
+  </div>
 <% end %>

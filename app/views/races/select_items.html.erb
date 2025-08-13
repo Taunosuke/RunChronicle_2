@@ -1,11 +1,25 @@
-<%= form_with url: add_items_race_path(@race), method: :patch, local: true do %>
-  <h3>持っていくアイテムを選んでください</h3>
-  <% @items.each do |item| %>
-    <div>
-      <%= check_box_tag "race[item_ids][]", item.id, @race_item_ids.include?(item.id), id: "item_#{item.id}" %>
-      <%= label_tag "item_#{item.id}", item.name %>
-    </div>
-  <% end %>
+<%= form_with url: add_items_race_path(@race), method: :patch, local: true, class: "mx-auto max-w-lg space-y-6 bg-white p-6 rounded-xl shadow-sm border border-slate-200" do %>
+  <h3 class="text-lg font-semibold text-slate-900 mb-4">持っていくアイテムを選んでください</h3>
 
-  <%= submit_tag "追加する" %>
+  <div class="space-y-3">
+    <% @items.each do |item| %>
+      <div class="flex items-center gap-3 p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition">
+        <%= check_box_tag "race[item_ids][]", item.id, @race_item_ids.include?(item.id),
+              id: "item_#{item.id}",
+              class: "h-5 w-5 text-blue-600 border-slate-300 rounded focus:ring-blue-500" %>
+        <%= label_tag "item_#{item.id}", item.name, class: "text-slate-700 cursor-pointer" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="pt-4">
+    <%= submit_tag "追加する",
+          class: "w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold shadow hover:bg-blue-700 transition" %>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to '戻る', race_path,
+          class: "inline-block px-4 py-2 bg-gray-200 text-slate-800 rounded hover:bg-gray-300" %>
+  </div>
 <% end %>
+

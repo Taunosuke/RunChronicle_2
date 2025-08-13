@@ -1,32 +1,57 @@
-<h1> 宿泊予定の登録 </h1>
+<div class="mx-auto max-w-lg px-4 py-8">
+  <h1 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">宿泊予定の登録</h1>
 
-<%= form_with(model: @stay_plan, url: race_stay_plan_path(params[:race_id]), local: true) do |form| %>
-<div>
-  <%= form.label '宿泊場所'  %>
-  <%= form.text_field :place_name %>
+  <%= form_with(model: @stay_plan, url: race_stay_plan_path(params[:race_id]), local: true,
+        class: "space-y-6 bg-white p-6 rounded-xl shadow-sm border border-slate-200") do |f| %>
+
+    <!-- 宿泊場所 -->
+    <div>
+      <%= f.label :place_name, "宿泊場所", class: "block text-sm font-medium text-slate-700 mb-1" %>
+      <%= f.text_field :place_name,
+            placeholder: "ホテル名や施設名",
+            class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+    </div>
+
+    <!-- 住所 -->
+    <div>
+      <%= f.label :address, "住所", class: "block text-sm font-medium text-slate-700 mb-1" %>
+      <%= f.text_field :address,
+            placeholder: "東京都〇〇区…",
+            class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+    </div>
+
+    <!-- チェックイン -->
+    <div>
+      <%= f.label :check_in_time, "チェックイン", class: "block text-sm font-medium text-slate-700 mb-1" %>
+      <%= f.time_field :check_in_time,
+            class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+    </div>
+
+    <!-- チェックアウト -->
+    <div>
+      <%= f.label :check_out_time, "チェックアウト", class: "block text-sm font-medium text-slate-700 mb-1" %>
+      <%= f.time_field :check_out_time,
+            class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+    </div>
+
+    <!-- 備考 -->
+    <div>
+      <%= f.label :note, "備考", class: "block text-sm font-medium text-slate-700 mb-1" %>
+      <%= f.text_area :note, rows: 3,
+            placeholder: "チェックインに関する注意や追加情報など",
+            class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+    </div>
+
+    <!-- 登録ボタン -->
+    <div>
+      <%= f.submit "登録",
+            class: "w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold shadow hover:bg-blue-700 transition" %>
+    </div>
+  <% end %>
+
+  <!-- 戻る -->
+  <div class="mt-6">
+    <%= link_to "戻る", :back,
+          class: "text-slate-600 hover:text-blue-700 underline underline-offset-4" %>
+  </div>
 </div>
-
-<div>
-  <%= form.label '住所'  %>
-  <%= form.text_field :address %>
-</div>
-
-<div>
-  <%= form.label 'チェックイン'  %>
-  <%= form.text_area :check_in_time %>
-</div>
-
-<div>
-  <%= form.label 'チェックアウト'  %>
-  <%= form.text_area :check_out_time %>
-</div>
-
-<div>
-  <%= form.label '備考'  %>
-  <%= form.text_field :note %>
-</div>
-
-  <%= form.submit %>
-<% end %>
-
-<%= link_to "戻る", :back %>
