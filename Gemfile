@@ -63,3 +63,5 @@ end
 gem "devise"
 gem "jquery-rails"
 gem "rails-i18n"
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
