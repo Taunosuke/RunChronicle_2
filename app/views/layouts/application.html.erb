@@ -26,7 +26,7 @@
             <%= link_to "RunChronicle", root_path, class: "hover:text-blue-900 transition" %>
         </h1>
         <nav class="flex items-center gap-6 text-sm">
-          <% if defined?(user_signed_in?) && user_signed_in? %>
+          <% if current_user %>
             <%= link_to 'プロフィール', user_path(current_user), class: "text-slate-700 hover:text-blue-700 transition" %>
             <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "text-slate-700 hover:text-blue-700 transition" %>
           <% else %>

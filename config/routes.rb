@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   get "home/index", to: "home#index", as: "home_index"
   root to: "home#index"
   resources :events
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
   resources :races do
-  member do
-    get :select_items
-    patch :add_items
-  end
+    member do
+      get :select_items
+      patch :add_items
+    end
     collection do
       get "discover"
     end
