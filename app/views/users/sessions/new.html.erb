@@ -1,39 +1,51 @@
 <div class="max-w-md mx-auto">
-  <h2 class="text-2xl font-bold mb-6">ログイン</h2>
+  <h2 class="text-2xl font-bold mb-6 text-center">ログイン</h2>
 
   <!-- Googleログインボタン -->
-  <div class="mb-6">
-    <a href="/auth/google_oauth2" style="display: inline-block; padding: 10px 20px; border: 1px solid #ccc; text-decoration: none; background: #fff; width: 100%;">
-      🔍 Googleでログイン
+  <div class="bg-white shadow-md rounded-lg border border-gray-200 px-8 py-6 mb-6">
+    <a href="/auth/google_oauth2" class="w-full inline-flex justify-center items-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-400 hover:shadow transition duration-150">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="google logo" class="w-5 h-5 mr-3" loading="lazy">
+      <span class="font-medium">Googleでログイン</span>
     </a>
   </div>
 
-  <hr style="margin: 20px 0;">
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div style="margin-bottom: 15px;">
-      <%= f.label :email, "メールアドレス" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 100%; padding: 8px;" %>
+  <!-- 区切り線 -->
+  <div class="relative mb-6">
+    <div class="absolute inset-0 flex items-center">
+      <div class="w-full border-t border-gray-300"></div>
     </div>
-
-    <div style="margin-bottom: 15px;">
-      <%= f.label :password, "パスワード" %><br />
-      <%= f.password_field :password, autocomplete: "current-password", style: "width: 100%; padding: 8px;" %>
+    <div class="relative flex justify-center text-sm">
+      <span class="px-2 bg-slate-50 text-gray-500">または</span>
     </div>
+  </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div style="margin-bottom: 15px;">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me, "ログイン状態を保持する" %>
+  <!-- 通常のログインフォーム -->
+  <div class="bg-white shadow-md rounded-lg border border-gray-200 px-8 pt-6 pb-6 mb-6">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :password, "パスワード", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="mb-6">
+          <%= f.check_box :remember_me, class: "mr-2" %>
+          <%= f.label :remember_me, "ログイン状態を保持する", class: "text-sm text-gray-700" %>
+        </div>
+      <% end %>
+
+      <div class="flex items-center justify-center">
+        <%= f.submit "ログイン", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" %>
       </div>
     <% end %>
+  </div>
 
-    <div>
-      <%= f.submit "ログイン", style: "padding: 10px 20px; background: #007cba; color: white; border: none;" %>
-    </div>
-  <% end %>
-
-  <div style="margin-top: 20px;">
+  <div class="text-center">
     <%= render "users/shared/links" %>
   </div>
 </div>
