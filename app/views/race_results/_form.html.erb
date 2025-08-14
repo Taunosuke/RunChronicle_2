@@ -1,0 +1,26 @@
+<%= form_with model: race_result, url: race_race_result_path(race), local: true,
+      class: "space-y-6 bg-white p-6 rounded-xl shadow-sm border border-slate-200" do |f| %>
+
+  <!-- タイム（秒） -->
+  <div>
+    <%= f.label :record_time_in_seconds, "タイム（秒）", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <%= f.number_field :record_time_in_seconds,
+          placeholder: "例: 12540（3時間29分）",
+          class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+    <p class="mt-1 text-xs text-slate-500">※タイムは秒単位で入力してください</p>
+  </div>
+
+  <!-- 感想 -->
+  <div>
+    <%= f.label :impression, "感想", class: "block text-sm font-medium text-slate-700 mb-1" %>
+    <%= f.text_area :impression, rows: 4,
+          placeholder: "大会を終えて感じたことやメモ",
+          class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+  </div>
+
+  <div>
+    <%= f.submit "登録",
+          class: "w-full rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold shadow hover:bg-blue-700 transition" %>
+  </div>
+<% end %>
+

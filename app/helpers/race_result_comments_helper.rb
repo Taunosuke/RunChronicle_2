@@ -1,0 +1,2 @@
+module RaceResultCommentsHelper
+end

@@ -1,0 +1,97 @@
+<!-- app/views/races/show.html.erb -->
+<div class="mx-auto max-w-5xl px-4 py-8">
+  <h1 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6"><%= @race.name %></h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- 基本情報 -->
+    <section class="lg:col-span-2 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-slate-900 mb-4">大会情報</h2>
+      <dl class="divide-y divide-slate-100">
+        <div class="py-3 grid grid-cols-3 gap-4">
+          <dt class="text-sm text-slate-500">日付</dt>
+          <dd class="col-span-2 text-sm text-slate-800"><%= @race.date&.strftime("%Y/%m/%d") || "—" %></dd>
+        </div>
+        <div class="py-3 grid grid-cols-3 gap-4">
+          <dt class="text-sm text-slate-500">入金期限</dt>
+          <dd class="col-span-2 text-sm text-slate-800"><%= @race.payment_due_date&.strftime("%Y/%m/%d") || "—" %></dd>
+        </div>
+        <div class="py-3 grid grid-cols-3 gap-4">
+          <dt class="text-sm text-slate-500">種目</dt>
+          <dd class="col-span-2 text-sm text-slate-800"><%= @event&.event || "—" %></dd>
+        </div>
+        <div class="py-3 grid grid-cols-3 gap-4">
+          <dt class="text-sm text-slate-500">距離</dt>
+          <dd class="col-span-2 text-sm text-slate-800"><%= @event&.distance ? "#{@event.distance} km" : "—" %></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- 宿泊情報 -->
+    <section class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-slate-900 mb-4">宿泊情報</h2>
+      <% sp = @stay_plan %>
+      <dl class="space-y-2 text-sm">
+        <div class="grid grid-cols-3 gap-4">
+          <dt class="text-slate-500">宿泊場所</dt>
+          <dd class="col-span-2 text-slate-800"><%= sp&.place_name || "未設定" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <dt class="text-slate-500">住所</dt>
+          <dd class="col-span-2 text-slate-800"><%= sp&.address || "未設定" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <dt class="text-slate-500">チェックイン</dt>
+          <dd class="col-span-2 text-slate-800"><%= sp&.check_in_time || "未設定" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <dt class="text-slate-500">チェックアウト</dt>
+          <dd class="col-span-2 text-slate-800"><%= sp&.check_out_time || "未設定" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <dt class="text-slate-500">備考</dt>
+          <dd class="col-span-2 text-slate-800 whitespace-pre-line"><%= sp&.note || "未設定" %></dd>
+        </div>
+      </dl>
+      <div class="mt-4">
+        <%= link_to '宿泊予定を登録', new_race_stay_plan_path(@race),
+            class: "inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:shadow-sm transition" %>
+      </div>
+    </section>
+  </div>
+
+  <!-- 持ち物 -->
+  <section class="mt-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h2 class="text-lg font-semibold text-slate-900 mb-4">持ち物リスト</h2>
+    <% if @race.items.any? %>
+      <ul class="flex flex-wrap gap-2">
+        <% @race.items.each do |item| %>
+          <li class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">
+            <%= item.name %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-sm text-slate-600">まだ登録されていません。</p>
+    <% end %>
+    <div class="mt-4">
+      <%= link_to '持ち物を追加', select_items_race_path(@race),
+          class: "inline-flex items-center rounded-lg bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition" %>
+    </div>
+  </section>
+
+  <!-- アクションボタン -->
+  <div class="mt-6 flex flex-wrap gap-3">
+    <%= link_to '編集', edit_race_path(@race),
+        class: "inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-white text-sm font-semibold shadow hover:bg-blue-700 transition" %>
+
+    <%= button_to '削除', race_path(@race),
+        method: :delete,
+        data: { confirm: '本当に削除しますか？' },
+        class: "inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-white text-sm font-semibold shadow hover:bg-red-700 transition" %>
+        <%= link_to '大会結果を登録', new_race_race_result_path(@race),
+        class: "inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:shadow-sm transition" %>
+
+          <%= link_to '戻る', home_index_path,
+        class: "inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:shadow-sm transition" %>
+  </div>
+</div>

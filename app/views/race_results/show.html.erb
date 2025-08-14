@@ -1,0 +1,82 @@
+<!-- app/views/race_results/show.html.erb -->
+<div class="mx-auto max-w-5xl px-4 py-8">
+  <h1 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6">試合結果の確認</h1>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- 大会サマリー -->
+    <section class="lg:col-span-1 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <h2 class="text-lg font-semibold text-slate-900 mb-4"><%= @race.name %></h2>
+      <dl class="space-y-2 text-sm">
+        <div class="grid grid-cols-3 gap-3">
+          <dt class="text-slate-500">日付</dt>
+          <dd class="col-span-2 text-slate-800"><%= @race.date&.strftime("%Y/%m/%d") || "—" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <dt class="text-slate-500">入金期限</dt>
+          <dd class="col-span-2 text-slate-800"><%= @race.payment_due_date&.strftime("%Y/%m/%d") || "—" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <dt class="text-slate-500">種目</dt>
+          <dd class="col-span-2 text-slate-800"><%= @race.event&.event || "—" %></dd>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <dt class="text-slate-500">距離</dt>
+          <dd class="col-span-2 text-slate-800"><%= @race.event&.distance ? "#{@race.event.distance} km" : "—" %></dd>
+        </div>
+      </dl>
+      <div class="mt-4 space-y-1 text-sm">
+        <p><span class="text-slate-500">タイム：</span>
+          <span class="font-semibold text-slate-900"><%= @race_result.formatted_time_japanese %></span>
+        </p>
+        <p><span class="text-slate-500">感想：</span>
+          <span class="text-slate-800 whitespace-pre-line"><%= @race_result.impression.presence || "—" %></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- コメント一覧 & 投稿 -->
+    <section class="lg:col-span-2 space-y-6">
+      <!-- コメント一覧 -->
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-semibold text-slate-900">コメント</h2>
+          <span class="text-sm text-slate-600">件数：<%= @race_result.race_result_comments.count %></span>
+        </div>
+
+        <% if @race_result.race_result_comments.any? %>
+          <ul class="space-y-4">
+            <% @race_result.race_result_comments.order(created_at: :desc).each do |c| %>
+              <li class="rounded-lg border border-slate-200 p-4">
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                  <span><%= c.user&.name || "匿名" %></span>
+                  <time><%= c.created_at.strftime("%Y/%m/%d %H:%M") %></time>
+                </div>
+                <p class="mt-2 text-slate-800 whitespace-pre-line"><%= c.content %></p>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-sm text-slate-600">まだコメントはありません。最初のコメントを投稿しましょう！</p>
+        <% end %>
+      </div>
+
+      <!-- コメント投稿フォーム -->
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900 mb-3">コメントを投稿</h3>
+        <%= form_with model: [@race_result, @race_result_comment], local: true, class: "space-y-3" do |f| %>
+          <%= f.text_area :content, rows: 4,
+                placeholder: "レースの感想やメモをどうぞ",
+                class: "w-full rounded-lg border-slate-300 focus:border-blue-500 focus:ring focus:ring-blue-200" %>
+          <%= f.submit "送信する",
+                class: "inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-white text-sm font-semibold shadow hover:bg-blue-700 transition" %>
+        <% end %>
+      </div>
+    </section>
+  </div>
+
+  <div class="mt-6">
+    <%= link_to "戻る", home_index_path,
+          class: "text-slate-600 hover:text-blue-700 underline underline-offset-4" %>
+  </div>
+</div>
+

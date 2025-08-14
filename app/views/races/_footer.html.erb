@@ -1,0 +1,15 @@
+<div class="flex flex-wrap gap-3 mt-6">
+  <!-- 編集 -->
+  <%= link_to '編集', edit_race_path(@race),
+      class: "inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-white text-sm font-semibold shadow hover:bg-blue-700 transition" %>
+
+  <!-- 削除 -->
+  <%= button_to '削除', race_path(@race),
+      method: :delete,
+      data: { confirm: '本当に削除しますか？' },
+      class: "inline-flex items-center rounded-lg bg-red-600 px-4 py-2 text-white text-sm font-semibold shadow hover:bg-red-700 transition" %>
+
+  <!-- 戻る -->
+  <%= link_to '戻る', home_index_path,
+      class: "inline-flex items-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 hover:border-blue-300 hover:shadow-sm transition" %>
+</div>

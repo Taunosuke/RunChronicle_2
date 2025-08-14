@@ -1,0 +1,2 @@
+module StayPlansHelper
+end
