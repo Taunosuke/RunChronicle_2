@@ -17,7 +17,12 @@ class RacesController < ApplicationController
   end
 
   def index
-    @races = current_user.races.includes([ :race_result ])
+     @races = current_user.races.includes(
+      :race_result,
+      :event,           # race_eventsテーブル経由でeventsを取得
+      :stay_plan,
+      :items            # race_itemsテーブル経由でitemsを取得
+    )
   end
 
   def show
@@ -27,8 +32,11 @@ class RacesController < ApplicationController
   end
 
   def destroy
-    race = Race.find(params[:id])
+    Rails.logger.debug "=== DESTROY ACTION START ==="
+    @race = Race.find(params[:id])
+    @race.destroy
     redirect_to races_path, notice: "大会予定を削除しました。"
+    Rails.logger.debug "Found race: #{@race.inspect}"
   end
 
   def edit
