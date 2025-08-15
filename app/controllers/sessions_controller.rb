@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :create ]
 
   def create
-    auth = request.env[ 'omniauth.auth' ]
+    auth = request.env["omniauth.auth]
     user = find_or_create_from_auth_hash(auth)
 
     if user
