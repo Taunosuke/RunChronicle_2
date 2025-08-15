@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   post "/races/:id/edit", to: "races#update"
   resources :items, only: [ :new, :create, :index, :edit, :update, :destroy ] do
   end
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
 end
