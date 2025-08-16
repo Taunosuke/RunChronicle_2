@@ -21,7 +21,7 @@
               <%= race.user.name %>
             </p>
             <p><span class="font-medium text-slate-500">種目：</span>
-              <%= race.event.event %>
+               <%= race.event&.event || "未設定" %>
             </p>
           </div>
 
