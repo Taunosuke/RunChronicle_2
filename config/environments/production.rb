@@ -1,5 +1,3 @@
-require "active_support/core_ext/integer/time"
-
 Rails.application.configure do
   config.enable_reloading = false
   config.eager_load = true
@@ -19,6 +17,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.active_record.attributes_for_inspect = [ :id ]
 
-  config.hosts << "runchronicle.jp"      # 独自ドメイン
-  config.hosts << "www.runchronicle-2.onrender.com"  # サブドメイン
+  config.hosts << "runchronicle.jp"
+  config.hosts << "www.runchronicle.jp"
+  config.hosts << "runchronicle-2.onrender.com"
+
+  # Render環境での追加設定
+  if ENV['RENDER'] && ENV['RENDER_EXTERNAL_HOSTNAME']
+    config.hosts << ENV['RENDER_EXTERNAL_HOSTNAME']
+  end
 end
