@@ -19,6 +19,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.active_record.attributes_for_inspect = [ :id ]
 
-  config.hosts << "runchronicle.jp"      # 独自ドメイン 
+  config.hosts << "runchronicle.jp"      # 独自ドメイン
   config.hosts << "www.runchronicle-2.onrender.com"  # サブドメイン
 end
