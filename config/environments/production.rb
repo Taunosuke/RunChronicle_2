@@ -22,7 +22,7 @@ Rails.application.configure do
   config.hosts << "runchronicle-2.onrender.com"
 
   # Render環境での追加設定
-  if ENV['RENDER'] && ENV['RENDER_EXTERNAL_HOSTNAME']
-    config.hosts << ENV['RENDER_EXTERNAL_HOSTNAME']
+  if ENV['RENDER'] && ENV["RENDER_EXTERNAL_HOSTNAME"]
+    config.hosts << ENV["RENDER_EXTERNAL_HOSTNAME"]
   end
 end
