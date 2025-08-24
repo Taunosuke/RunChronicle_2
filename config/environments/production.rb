@@ -25,7 +25,7 @@ Rails.application.configure do
   if ENV["RENDER"] && ENV["RENDER_EXTERNAL_HOSTNAME"]
     config.hosts << ENV["RENDER_EXTERNAL_HOSTNAME"]
   end
-  config.action_mailer.default_url_options = { 
+  config.action_mailer.default_url_options = {
   host: ENV["APP_HOST"] || "runchronicle.jp",
   protocol: ENV["APP_PROTOCOL"] || "https"
 }
