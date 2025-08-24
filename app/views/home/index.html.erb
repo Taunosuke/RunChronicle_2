@@ -3,16 +3,12 @@
     <!-- Hero -->
     <section class="rounded-2xl bg-white shadow-sm border border-slate-200 p-6 md:p-8">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <!-- 左：アイキャッチ -->
         <div class="flex items-center gap-4">
-          <div class="h-16 w-16 rounded-xl bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center">
-            <!-- ランナーっぽい抽象アイコン（Heroicons placeholder） -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7a2 2 0 11-4 0 2 2 0 014 0zM4 21l4-8 4 3 3-6 5 2"/>
-            </svg>
+          <div class="h-16 w-16 flex items-center justify-center">
+           <%= image_tag "logo.png", class: "h-16 w-16 object-contain" %>
           </div>
           <p class="text-2xl md:text-3xl font-bold text-slate-900">
-            RunChronicleはランナーのためのアプリです。
+            RunChronicleへようこそ！
           </p>
         </div>
       </div>
