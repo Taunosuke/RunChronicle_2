@@ -22,8 +22,11 @@
     <!-- 共通ヘッダー -->
     <header class="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-slate-200">
       <div class="mx-auto max-w-5xl px-4 h-14 flex items-center justify-between">
-        <h1 class="text-xl font-semibold text-blue-700">
-            <%= link_to "RunChronicle", root_path, class: "hover:text-blue-900 transition" %>
+        <h1 class="flex items-center gap-2 text-xl font-semibold text-blue-700">
+          <%= link_to root_path, class: "flex items-center gap-2 hover:text-blue-900 transition" do %>
+          <%= image_tag "logo.png", class: "h-10 w-10 object-contain" %>
+           <span>RunChronicle</span>
+          <% end %>
         </h1>
         <nav class="flex items-center gap-6 text-sm">
           <% if defined?(user_signed_in?) && user_signed_in? %>

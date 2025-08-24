@@ -53,14 +53,14 @@ class RacesController < ApplicationController
   end
 
   def discover
-    @races = Race.includes(:event, :user, :race_result).where.not(event: nil)
-    Rails.logger.info "Race count: #{Race.count}"
-    Rails.logger.info "Races without event: #{Race.where(event: nil).count}"
+    @races = Race.includes(:event, :user, :race_result)
+              .joins(:race_event)
   end
 
   def select_items
     @race = Race.find(params[:id])
     @items = current_user.items
+
     @race_item_ids = @race.item_ids
   end
 

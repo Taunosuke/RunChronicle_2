@@ -7,6 +7,7 @@
     <section class="lg:col-span-2 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
       <h2 class="text-lg font-semibold text-slate-900 mb-4">大会情報</h2>
       <dl class="divide-y divide-slate-100">
+
         <div class="py-3 grid grid-cols-3 gap-4">
           <dt class="text-sm text-slate-500">日付</dt>
           <dd class="col-span-2 text-sm text-slate-800"><%= @race.date&.strftime("%Y/%m/%d") || "—" %></dd>
@@ -24,6 +25,15 @@
           <dd class="col-span-2 text-sm text-slate-800"><%= @event&.distance ? "#{@event.distance} km" : "—" %></dd>
         </div>
       </dl>
+        <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+    <h3 class="text-sm font-medium text-blue-900 mb-2">宿泊先を探す</h3>
+    <p class="text-xs text-blue-700 mb-3">大会周辺のホテル・宿泊施設を検索できます</p>
+
+    <%= link_to "楽天トラベルで検索", "https://travel.rakuten.co.jp/", 
+        target: "_blank",
+        class: "inline-flex items-center px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition" %>
+  </div>
+
     </section>
 
     <!-- 宿泊情報 -->
